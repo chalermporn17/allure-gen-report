@@ -1,7 +1,8 @@
 #! /bin/bash
 
-if [[ -z "$ALLURE_PREVIOUS_REPORT_PATH" ]]; then
-   cp -r "$ALLURE_PREVIOUS_REPORT_PATH" "$INPUT_ALLURE_RESULT_PATH/history"
+if [ "$ALLURE_PREVIOUS_REPORT_PATH" != "" ]; then
+   echo "Copying previous report from $ALLURE_PREVIOUS_REPORT_PATH to $INPUT_ALLURE_RESULT_PATH/history"
+   cp -r "$ALLURE_PREVIOUS_REPORT_PATH/history" "$ALLURE_RESULT_PATH/history"
 fi
 
 echo '{"name":"GitHub Actions","type":"github","reportName":"'"$REPORT_NAME"'",' > executor.json
