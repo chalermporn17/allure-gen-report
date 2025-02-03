@@ -1,5 +1,9 @@
 #! /bin/bash
-# For github action
+
+if [[ -z "$ALLURE_PREVIOUS_REPORT_PATH" ]]; then
+   cp -r "$ALLURE_PREVIOUS_REPORT_PATH" "$INPUT_ALLURE_RESULT_PATH/history"
+fi
+
 echo '{"name":"GitHub Actions","type":"github","reportName":"'"$REPORT_NAME"'",' > executor.json
 echo "\"url\":\"${REPORT_URL}\"," >> executor.json # ???
 echo "\"reportUrl\":\"${REPORT_URL}\"," >> executor.json
