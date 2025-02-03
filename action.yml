@@ -1,0 +1,30 @@
+name: "Generate Allure Report"
+description: "Generate Allure Report"
+inputs:
+  report_name:
+    description: "Report Name"
+    required: true
+    default: "allure-report"
+  allure_result_path:
+    description: "Allure Result Path"
+    required: true
+  allure_previous_report_path:
+    description: "Allure Previous Report Path"
+    required: false
+    default: ""
+  allure_output_report_path:
+    description: "Allure Report Path"
+    required: true
+  REPORT_URL:
+    description: "Report URL. Use as hyperlink in the report"
+    default: ""
+    required: false
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  env:
+    ALLURE_RESULT_PATH: ${{ inputs.allure_result_path }}
+    ALLURE_PREVIOUS_REPORT_PATH: ${{ inputs.allure_previous_report_path }}
+    ALLURE_OUTPUT_REPORT_PATH: ${{ inputs.allure_output_report_path }}
+    REPORT_NAME: ${{ inputs.report_name }}
+    REPORT_URL: ${{ inputs.REPORT_URL }}
