@@ -15,10 +15,26 @@ inputs:
   allure_output_report_path:
     description: "Allure Report Path"
     required: true
-  REPORT_URL:
+  report_url:
     description: "Report URL. Use as hyperlink in the report"
     default: ""
     required: false
+  github_server_url:
+    description: "GitHub Server URL"
+    required: true
+    default: ${{ github.server_url }}
+  github_repository:
+    description: "GitHub Repository"
+    required: true
+    default: ${{ github.repository }}
+  github_run_id:
+    description: "GitHub Run ID"
+    required: true
+    default: ${{ github.run_id }}
+  github_run_number:
+    description: "GitHub Run Number"
+    required: true
+    default: ${{ github.run_number }}
 runs:
   using: "docker"
   image: "Dockerfile"
@@ -27,4 +43,8 @@ runs:
     ALLURE_PREVIOUS_REPORT_PATH: ${{ inputs.allure_previous_report_path }}
     ALLURE_OUTPUT_REPORT_PATH: ${{ inputs.allure_output_report_path }}
     REPORT_NAME: ${{ inputs.report_name }}
-    REPORT_URL: ${{ inputs.REPORT_URL }}
+    REPORT_URL: ${{ inputs.report_url }}
+    GITHUB_SERVER_URL: ${{ inputs.github_server_url }}
+    GITHUB_REPOSITORY: ${{ inputs.github_repository }}
+    WORKFLOW_RUN_ID: ${{ inputs.github_run_id }}
+    WORKFLOW_RUN_NUMBER: ${{ inputs.github_run_number }}
